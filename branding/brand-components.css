@@ -1,0 +1,26 @@
+/* Outro Jeito | Controles, cartões e acessibilidade. */
+button { border-radius:13px !important; font-family:var(--oj-body) !important;
+  transition:background-color .16s ease,border-color .16s ease,box-shadow .16s ease; }
+button:hover:not(:disabled) { box-shadow:0 2px 11px rgba(42,14,58,.12); }
+#explore { background:var(--oj-yellow) !important;color:var(--oj-deep) !important;
+  border:1px solid var(--oj-yellow) !important;font-weight:800; }
+#explore:hover:not(:disabled) { background:#E6AA19 !important; }
+textarea,input,select { background:var(--oj-white) !important; border:1px solid var(--oj-line) !important;
+  border-radius:12px !important; color:var(--oj-deep) !important; }
+textarea:focus,input:focus,select:focus { border-color:var(--oj-purple) !important;
+  box-shadow:0 0 0 3px rgba(123,47,247,.15); }
+#result { background:var(--oj-soft) !important; border:1px solid #E5D8ED !important;
+  border-radius:18px !important; color:var(--oj-deep) !important; }
+#result button:not(#explore) { border-color:var(--oj-line); }
+#paths > section { background:rgba(255,255,255,.86); border-radius:13px;
+  border:1px solid #E4DAE9; padding:10px 13px; margin:10px 0; }
+#paths > section button { background:var(--oj-white) !important; color:var(--oj-deep) !important;
+  border:1px solid var(--oj-line) !important; font-weight:700; text-align:left; }
+#paths > section button:focus-visible { outline-color:var(--oj-purple) !important; }
+#paths p { color:var(--oj-deep); }
+button[aria-pressed="true"],button[aria-selected="true"] {
+  border-color:var(--oj-purple) !important; }
+header button { background:var(--oj-cream) !important;color:var(--oj-deep) !important;
+  border:1px solid rgba(255,255,255,.45) !important; }
+@media(prefers-contrast:more) { #result,#paths>section { border-width:2px !important; }
+  button,textarea,input { border-width:2px !important; } }
