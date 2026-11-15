@@ -1,0 +1,36 @@
+# Segredos e arquivos locais — nunca publicar
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.pfx
+*secret*
+*credentials*
+*.sqlite
+*.sqlite3
+*.db
+
+# Dependências e caches
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.wrangler/
+dist/
+build/
+coverage/
+*.log
+
+# Arquivos de editor/sistema
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.bak
