@@ -14,12 +14,12 @@ if page is None:
 names = ("brand-tokens.css", "brand-layout.css", "brand-components.css")
 text = page.read_text(encoding="utf-8")
 for name in names:
-    old = f"{name}?v=oj-v1"
+    old = f'href="{name}?v=oj-v1"'
     if text.count(old) != 1 or not (kit / name).is_file():
         raise SystemExit(f"ABORTADO: arquivo ou referência inesperada: {name}")
     if not (page.parent / name).is_file():
         raise SystemExit(f"ABORTADO: CSS instalado não encontrado: {name}")
-    text = text.replace(old, f"{name}?v=oj-v1-1", 1)
+    text = text.replace(old, f'href="{name}?v=oj-v1-1"', 1)
 if "OUTRO_JEITO_BRAND_V1" not in text:
     raise SystemExit("ABORTADO: o kit visual original não está instalado.")
 backup = Path.home() / "CitizenTech_brand_backups" / ("css_v1_1_" + datetime.now().strftime("%Y%m%d_%H%M%S"))
