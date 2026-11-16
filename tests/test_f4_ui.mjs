@@ -1,0 +1,12 @@
+import assert from "node:assert/strict";
+import {readFileSync} from "node:fs";
+import {runInNewContext} from "node:vm";
+const source = readFileSync(new URL("../web/privacy.js", import.meta.url), "utf8");
+const {inspect} = runInNewContext(`${source}; ({inspect});`);
+assert.match(inspect("quero saber a guarda dos meus filhos").safe, /guarda/);
+assert.match(inspect("não consigo um trabalho").safe, /trabalho/);
+const actions = readFileSync(new URL("../web/guidance.js", import.meta.url), "utf8");
+assert.match(actions, /www\\.gov\\.br/);
+assert.match(actions, /www\\.cnj\\.jus\\.br/);
+assert.match(actions, /window\.confirm/);
+console.log("PASS — temas locais e links oficiais sob confirmação.");

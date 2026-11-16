@@ -1,0 +1,60 @@
+/* Outro Jeito | v1.1: nenhuma regra global de button/input ou tela do jogo. */
+.frame:has(.topics) .topics > button,
+.frame:has(.topics) button.details,
+.frame:has(.topics) #explore,
+.frame:has(.topics) #result button,
+.frame:has(.topics) > header button {
+  border-radius: 13px !important;
+  transition: background-color .16s ease, border-color .16s ease, box-shadow .16s ease;
+}
+.frame:has(.topics) .topics > button:hover:not(:disabled),
+.frame:has(.topics) button.details:hover:not(:disabled),
+.frame:has(.topics) #explore:hover:not(:disabled),
+.frame:has(.topics) #result button:hover:not(:disabled),
+.frame:has(.topics) > header button:hover:not(:disabled) {
+  box-shadow: 0 3px 12px rgba(42,14,58,.13);
+}
+.frame:has(.topics) #explore {
+  background: var(--oj-yellow) !important; color: var(--oj-deep) !important;
+  border: 1px solid var(--oj-yellow) !important; font-weight: 800;
+}
+.frame:has(.topics) #explore:hover:not(:disabled) {
+  background: #E6AA19 !important;
+}
+.frame:has(.topics) :is(input,textarea,select) {
+  background: var(--oj-white) !important; border: 1px solid var(--oj-line) !important;
+  border-radius: 12px !important; color: var(--oj-deep) !important;
+}
+.frame:has(.topics) :is(input,textarea,select):focus {
+  border-color: var(--oj-purple) !important;
+  box-shadow: 0 0 0 3px rgba(123,47,247,.15);
+}
+.frame:has(.topics) #result {
+  background: var(--oj-soft) !important; border: 1px solid #E5D8ED !important;
+  border-radius: 18px !important; color: var(--oj-deep) !important;
+}
+.frame:has(.topics) #result button { border-color: var(--oj-line); }
+.frame:has(.topics) #paths > section {
+  background: rgba(255,255,255,.86); border-radius: 13px;
+  border: 1px solid #E4DAE9; padding: 10px 13px; margin: 10px 0;
+}
+.frame:has(.topics) #paths > section button {
+  background: var(--oj-white) !important; color: var(--oj-deep) !important;
+  border: 1px solid var(--oj-line) !important; font-weight: 700; text-align: left;
+}
+.frame:has(.topics) #paths p { color: var(--oj-deep); }
+.frame:has(.topics) .topics > button[aria-pressed="true"],
+.frame:has(.topics) .topics > button[aria-selected="true"] {
+  background: #E9D9FC !important; color: var(--oj-deep) !important;
+  border-color: var(--oj-purple) !important;
+}
+.frame:has(.topics) > header button {
+  background: var(--oj-cream) !important; color: var(--oj-deep) !important;
+  border: 1px solid rgba(255,255,255,.45) !important;
+}
+@media (prefers-contrast: more) {
+  .frame:has(.topics) #result, .frame:has(.topics) #paths > section {
+    border-width: 2px !important;
+  }
+  .frame:has(.topics) :is(button,input,textarea) { border-width: 2px !important; }
+}

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer"><title>Outro Jeito — explorar possibilidades</title>
+  <link rel="stylesheet" href="styles.css?v=f4-3-3">
+  <script src="ai.js?v=f4-3-3" defer></script>
+  <script src="game.js?v=f4-3-3" defer></script>
+  <script src="privacy.js?v=f4-3-3" defer></script>
+  <script src="guidance.js?v=f4-3-3" defer></script>
+  <script src="app.js?v=f4-3-3" defer></script>
+  <script src="flow.js?v=f4-3-3" defer></script>
+  <script src="agent.js?v=f4-3-3" defer></script>
+<!-- OUTRO_JEITO_BRAND_V1 -->
+<meta name="theme-color" content="#2A0E3A">
+<meta name="description" content="Outro Jeito. Existem outras formas de seguir.">
+<link rel="icon" type="image/svg+xml" href="assets/outro-jeito-favicon.svg">
+<link rel="stylesheet" href="brand-tokens.css?v=oj-v1-1">
+<link rel="stylesheet" href="brand-layout.css?v=oj-v1-1">
+<link rel="stylesheet" href="brand-components.css?v=oj-v1-1">
+</head>
+<body>
+  <header class="top"><span class="brand"><img class="oj-mark" src="assets/outro-jeito-symbol-light.svg" alt="" aria-hidden="true"><span class="oj-wordmark">Outro Jeito<span class="oj-dot">.</span></span></span><button id="switch" class="quiet">Trocar de tela</button></header>
+  <main class="shell">
+    <p class="eyebrow">Uma pergunta. Diferentes futuros. Sua escolha.</p>
+    <h1>Que possibilidade você gostaria de conhecer?</h1>
+    <p class="intro">Comece por um assunto. Não precisa contar dados pessoais.</p>
+    <section class="choices" aria-label="Escolha um assunto">
+      <button data-topic="direitos">Conhecer meus direitos <span>›</span></button>
+      <button data-topic="apoio">Conhecer formas de apoio <span>›</span></button>
+      <button data-topic="caminhos">Explorar outros caminhos <span>›</span></button>
+    </section>
+    <label class="field" for="context">Contexto fictício (opcional, sem nomes ou endereços)</label>
+    <textarea id="context" rows="2" maxlength="500" placeholder="Ex.: quero conhecer direitos relacionados à moradia"></textarea>
+    <button id="explore" class="small" type="button">Explorar possibilidades</button>
+    <section id="result" class="notice" hidden aria-live="polite">
+      <strong id="chosen">Próximo passo</strong><p id="message"></p><div id="paths" class="choices" hidden></div>
+      <div class="actions"><button id="primary" class="small"></button><button id="back" class="quiet"></button></div>
+    </section>
+    <details id="help" class="help"><summary>Ajuda imediata</summary>
+      <p>Se houver perigo imediato no Brasil, considere pedir ajuda somente se for seguro.</p>
+      <p><b>190</b> Polícia · <b>192</b> SAMU · <b>180</b> Orientação às mulheres · <b>100</b> Direitos humanos</p>
+      <p>Não ligamos automaticamente. Um aparelho monitorado pode registrar seu acesso.</p>
+    </details>
+    <p class="footnote">Protótipo acadêmico em testes. Use apenas situações fictícias.</p>
+    <noscript><p class="notice">Interação indisponível sem JavaScript. Próximo passo: abra «Ajuda imediata» acima.</p></noscript>
+  </main>
+  <section id="game" class="game shell" hidden aria-label="Jogo da velha">
+    <h1 tabindex="-1" id="game-title">Jogo da velha</h1>
+    <fieldset class="levels" aria-label="Dificuldade"><label><input type="radio" name="difficulty" value="easy" checked><span>Fácil</span></label><label><input type="radio" name="difficulty" value="hard"><span>Difícil</span></label></fieldset>
+    <p id="game-status" aria-live="polite">Se o jogo não carregar, abra uma nova página.</p>
+    <div id="board" class="board" role="group" aria-label="Tabuleiro"></div>
+    <button id="reset" class="small">Recomeçar partida</button>
+    <a class="quiet textlink" href="./">Abrir nova página</a>
+  </section>
+</body>
+</html>

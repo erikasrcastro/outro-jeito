@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const read = (name) => readFileSync(new URL('../' + name, import.meta.url), 'utf8');
+const app = read('web/app.js');
+const html = read('web/index.html');
+const server = read('src/main.py');
+const whitelist = app.match(/const actionNames = new Set\((\[[^\]]+\])\)/);
+assert.ok(whitelist, 'lista de ações presente');
+assert.ok(JSON.parse(whitelist[1]).includes('confirm_preview'), 'confirmação permitida');
+assert.match(app, /confirm_preview:\s*\(\)\s*=>\s*sendConfirmed\(\)/);
+assert.match(html, /agent\.js\?v=f4-3-3/);
+assert.match(html, /app\.js\?v=f4-3-3/);
+assert.match(html, /flow\.js\?v=f4-3-3/);
+assert.match(server, /Response\(None, status=204, headers=headers\)/);
+console.log('PASS — confirmar e explorar autorizado, cache revisto, OPTIONS 204 sem corpo.');

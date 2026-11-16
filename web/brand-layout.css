@@ -1,0 +1,47 @@
+/* Outro Jeito | v1.1: hero fluido, sem faixa horizontal fixa. */
+body { min-height: 100vh; background-image: none !important; overflow-x: clip; }
+.frame:has(.topics) { position: relative; isolation: isolate; }
+.frame:has(.topics)::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  top: 0; left: 50%; transform: translateX(-50%); width: 100vw;
+  height: 680px;
+  background:
+    radial-gradient(ellipse 38% 28% at 92% 29%, rgba(123,47,247,.32), transparent 92%),
+    radial-gradient(ellipse 38% 25% at 6% 48%, rgba(255,107,95,.20), transparent 94%),
+    linear-gradient(to bottom, var(--oj-deep) 0%, var(--oj-deep) 38%,
+      #401454 55%, rgba(63,20,86,.68) 70%, rgba(63,20,86,.18) 87%,
+      transparent 100%);
+}
+.frame:has(.topics) > header { position: relative; z-index: 1; color: var(--oj-cream); }
+.frame:has(.topics) > header :is(a,strong,.oj-wordmark) {
+  color: var(--oj-cream) !important;
+}
+.frame:has(.topics) .oj-mark {
+  display: inline-block; width: 25px; height: 25px;
+  vertical-align: middle; object-fit: contain; margin-right: 7px;
+}
+.frame:has(.topics) .oj-wordmark {
+  display: inline-flex; align-items: center; gap: 2px; font-weight: 800;
+}
+.frame:has(.topics) .oj-dot { color: var(--oj-yellow); }
+.frame:has(.topics) main > h1 {
+  color: var(--oj-cream) !important; line-height: 1.13; font-weight: 800;
+}
+.frame:has(.topics) main > p:first-of-type {
+  color: #E7DCEB !important; /* contraste legível sobre roxo */
+}
+.frame:has(.topics) main > small:first-of-type,
+.frame:has(.topics) main > .eyebrow:first-of-type {
+  color: var(--oj-yellow) !important; letter-spacing: .10em; font-weight: 700;
+}
+@media (max-width: 600px) {
+  .frame:has(.topics)::before { height: 630px; }
+  .frame:has(.topics) main > h1 { font-size: clamp(1.7rem,7vw,2.4rem); }
+  .frame:has(.topics) .oj-mark { width: 21px; height: 21px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .frame:has(.topics) *, .frame:has(.topics) *::before,
+  .frame:has(.topics) *::after {
+    animation-duration: .01ms !important; transition-duration: .01ms !important;
+  }
+}
