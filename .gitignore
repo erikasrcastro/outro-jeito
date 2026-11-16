@@ -34,3 +34,9 @@ coverage/
 .vscode/
 *.swp
 *.bak
+
+# Staging e versões locais do Cloudflare (não versionar)
+.deploy/
+wrangler.staging.jsonc
+*.har
+*.pem
