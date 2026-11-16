@@ -44,4 +44,4 @@ class Flow(unittest.IsolatedAsyncioTestCase):
         out = await explore_live(case, "key", broken)
         self.assertEqual((out["status"], out["evidence"]), ("futures", "UNVERIFIED"))
         self.assertEqual(len(out["paths"]), 2)
-        self.assertIn("Não foi possível verificar a referência legislativa", out["message"])
+        self.assertIn("Não consegui conferir a lei no Senado", out["message"])

@@ -6,11 +6,11 @@
   <link rel="stylesheet" href="styles.css?v=f4-3-3">
   <script src="ai.js?v=f4-3-3" defer></script>
   <script src="game.js?v=f4-3-3" defer></script>
-  <script src="privacy.js?v=f4-3-3" defer></script>
-  <script src="guidance.js?v=f4-3-3-ux1" defer></script>
-  <script src="app.js?v=f4-3-3-ux1" defer></script>
-  <script src="flow.js?v=f4-3-3" defer></script>
-  <script src="agent.js?v=f4-3-3" defer></script>
+  <script src="privacy.js?v=simples-v1" defer></script>
+  <script src="guidance.js?v=simples-v1" defer></script>
+  <script src="app.js?v=simples-v1" defer></script>
+  <script src="flow.js?v=simples-v1" defer></script>
+  <script src="agent.js?v=simples-v1" defer></script>
 <!-- OUTRO_JEITO_BRAND_V1 -->
 <meta name="theme-color" content="#2A0E3A">
 <meta name="description" content="Outro Jeito. Existem outras formas de seguir.">
@@ -23,26 +23,26 @@
   <header class="top"><span class="brand"><img class="oj-mark" src="assets/outro-jeito-symbol-light.svg" alt="" aria-hidden="true"><span class="oj-wordmark">Outro Jeito<span class="oj-dot">.</span></span></span><button id="switch" class="quiet">Trocar de tela</button></header>
   <main class="shell">
     <p class="eyebrow">Uma pergunta. Diferentes futuros. Sua escolha.</p>
-    <h1>Que possibilidade você gostaria de conhecer?</h1>
-    <p class="intro">Comece por um assunto. Não precisa contar dados pessoais.</p>
+    <h1>O que você quer entender hoje?</h1>
+    <p class="intro">Escolha um assunto. Não escreva seu nome, telefone ou endereço.</p>
     <section class="choices" aria-label="Escolha um assunto">
-      <button data-topic="direitos">Conhecer meus direitos <span>›</span></button>
-      <button data-topic="apoio">Conhecer formas de apoio <span>›</span></button>
-      <button data-topic="caminhos">Explorar outros caminhos <span>›</span></button>
+      <button data-topic="direitos">Entender meus direitos <span>›</span></button>
+      <button data-topic="apoio">Saber onde buscar ajuda <span>›</span></button>
+      <button data-topic="caminhos">Ver outras opções <span>›</span></button>
     </section>
-    <label class="field" for="context">Contexto fictício (opcional, sem nomes ou endereços)</label>
-    <textarea id="context" rows="2" maxlength="500" placeholder="Ex.: quero conhecer direitos relacionados à moradia"></textarea>
-    <button id="explore" class="small" type="button">Explorar possibilidades</button>
+    <label class="field" for="context">Se quiser, escreva um exemplo inventado. Não use nomes nem endereços.</label>
+    <textarea id="context" rows="2" maxlength="500" placeholder="Ex.: depois da separação, como fica a casa?"></textarea>
+    <button id="explore" class="small" type="button">Ver minhas opções</button>
     <section id="result" class="notice" hidden aria-live="polite">
       <strong id="chosen">Próximo passo</strong><p id="message"></p><div id="paths" class="choices" hidden></div>
       <div class="actions"><button id="primary" class="small"></button><button id="back" class="quiet"></button></div>
     </section>
     <details id="help" class="help"><summary>Ajuda imediata</summary>
-      <p>Se houver perigo imediato no Brasil, considere pedir ajuda somente se for seguro.</p>
-      <p><b>190</b> Polícia · <b>192</b> SAMU · <b>180</b> Orientação às mulheres · <b>100</b> Direitos humanos</p>
-      <p>Não ligamos automaticamente. Um aparelho monitorado pode registrar seu acesso.</p>
+      <p>Se houver perigo agora, peça ajuda somente se for seguro para você.</p>
+      <p><b>190</b> Polícia (perigo agora) · <b>192</b> Ambulância · <b>180</b> Ajuda para mulheres · <b>100</b> Direitos humanos</p>
+      <p>Não fazemos ligações. Se alguém vigia seu celular, pode ver que você entrou neste site.</p>
     </details>
-    <p class="footnote">Protótipo acadêmico em testes. Use apenas situações fictícias.</p>
+    <p class="footnote">Este é um teste da faculdade. Use só exemplos inventados, nunca histórias reais.</p>
     <noscript><p class="notice">Interação indisponível sem JavaScript. Próximo passo: abra «Ajuda imediata» acima.</p></noscript>
   </main>
   <section id="game" class="game shell" hidden aria-label="Jogo da velha">

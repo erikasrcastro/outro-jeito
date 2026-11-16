@@ -1,13 +1,12 @@
-"""Caminhos seguros para dúvida sobre moradia/partilha em contexto sensível."""
-
+"""Exemplos claros sobre moradia sem forçar saída nem confronto."""
 PATHS = [
-    {"title": "Conhecer formas de proteção da moradia",
-     "possibility": "Se houver situação de violência e risco, podem existir formas de proteção ligadas à moradia; não presuma que precise sair ou negociar diretamente.",
-     "question": "Prefere conhecer primeiro possibilidades gerais de proteção, sem decidir nada agora?"},
-    {"title": "Conhecer orientação sem decidir agora",
-     "possibility": "Caso queira orientação, o Ligue 180 informa sobre direitos e serviços e também recebe denúncias; este aplicativo não faz contato.",
-     "question": "Quer entender como funciona esse canal antes de escolher se deseja utilizá-lo?"},
-    {"title": "Entender a partilha no seu tempo",
-     "possibility": "Dependendo do vínculo com o imóvel, a questão patrimonial pode ser esclarecida separadamente das escolhas de proteção e segurança.",
-     "question": "Gostaria de conhecer quais condições gerais podem importar para a partilha?"},
+    {"title": "Entender se posso ficar em casa",
+     "possibility": "Se há violência ou medo, pode existir uma forma de proteção para você e sua casa. Por exemplo: pedir orientação antes de pensar em mudar.",
+     "question": "Quer saber que ajuda existe sem decidir nada agora?"},
+    {"title": "Saber onde pedir ajuda",
+     "possibility": "Caso queira tirar dúvidas, o Ligue 180 pode orientar. Por exemplo: explicar onde buscar apoio. Este aplicativo não liga para ninguém.",
+     "question": "Quer entender como o 180 funciona primeiro?"},
+    {"title": "Entender as regras da casa",
+     "possibility": "Dependendo de quem é a casa, a partilha (divisão dos bens) pode mudar. Por exemplo: casa alugada e casa comprada não são a mesma coisa.",
+     "question": "Quer saber a diferença entre casa alugada e casa própria?"},
 ]

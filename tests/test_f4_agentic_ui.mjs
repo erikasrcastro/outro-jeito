@@ -13,7 +13,7 @@ runInNewContext(`${src}\nrenderPaths({paths:pathsFromTest})`,{...sandbox,pathsFr
 assert.equal(panel.hidden,false);
 assert.equal(panel.children.length,2);
 assert.match(panel.children[0].children[1].textContent,/estudar normas/);
-assert.match(panel.children[0].children[1].textContent,/não verificada/);
+assert.doesNotMatch(panel.children[0].children[1].textContent,/não verificada/);
 panel.children[0].children[0].onclick();
 assert.match(panel.children[0].children[2].textContent,/Onde consultar/);
 assert.equal(panel.children[0].children[2].focused,true);

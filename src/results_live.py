@@ -1,4 +1,4 @@
-"""Separa norma consultada de hipóteses; protege cenários de moradia."""
+"""Separa fontes checadas de ideias, sempre em linguagem simples."""
 from local_guides import GUIDES
 from property_paths import PATHS
 
@@ -9,17 +9,17 @@ def futures_response(extraction, source=None, source_failed=False, concerns=()):
     _, url, label = GUIDES[guide]
     verified = bool(source)
     origin = source if verified else {"url": url, "source_kind": "official_guide"}
-    caveat = (f"A referência legislativa {source['reference']} foi consultada; isso não "
-              "confirma sua aplicação a uma situação individual." if verified else
-              "Não foi possível verificar a referência legislativa no Senado nesta consulta." if source_failed else
-              "As alternativas não foram verificadas para uma situação individual.")
-    message = ("Você não precisa decidir tudo agora. Conheça os caminhos no seu ritmo. "
-               + caveat)
+    caveat = (f"Consultei a {source['reference']} no Senado. A lei existe, mas isso não "
+              "quer dizer que vale para a sua situação." if verified else
+              "Não consegui conferir a lei no Senado agora. Não vou afirmar que "
+              "ela vale para você." if source_failed else
+              "Não consultei uma lei sobre este assunto. Isso ainda não foi confirmado.")
+    message = "Você não precisa decidir tudo agora. Estas são ideias, não promessas. " + caveat
     paths = PATHS if sensitive else extraction["paths"]
     return {"status": "futures", "phase": "F4", "simulated": False,
             "evidence": "CONDITIONAL" if verified else "UNVERIFIED" if source_failed else "HYPOTHESIS",
             "message": message,
             "paths": [{**item, "evidence": "HYPOTHESIS"} for item in paths],
             "source": origin, "source_verified": verified,
-            "primary_action": {"id": "open_official_source", "label": "Ver fonte e condições" if verified else label},
-            "secondary_action": {"id": "choose_topic", "label": "Explorar outro assunto"}}
+            "primary_action": {"id": "open_official_source", "label": "Entender a lei" if verified else label},
+            "secondary_action": {"id": "choose_topic", "label": "Ver outro assunto"}}

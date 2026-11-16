@@ -17,19 +17,19 @@ function inspect(text) {
 }
 // Assuntos guiados: escolha local, sem envio da narrativa original.
 const themes = [
-  ["Proteção e violência", "protecao", "direitos"],
-  ["Família e guarda", "guarda", "direitos"],
+  ["Segurança e proteção", "protecao", "direitos"],
+  ["Filhos e família", "guarda", "direitos"],
   ["Trabalho e renda", "trabalho", "caminhos"],
-  ["Assistência social", "assistencia", "apoio"],
+  ["Ajuda do governo", "assistencia", "apoio"],
   ["Moradia", "moradia", "caminhos"],
   ["Saúde", "saude", "apoio"],
-  ["Inclusão e acessibilidade", "acessibilidade", "direitos"],
-  ["Crianças e adolescentes", "crianca", "direitos"],
-  ["Acesso à justiça", "defensoria", "direitos"],
+  ["Direitos de quem tem deficiência", "acessibilidade", "direitos"],
+  ["Crianças e jovens", "crianca", "direitos"],
+  ["Ajuda para entender a lei", "defensoria", "direitos"],
 ];
 if (typeof document !== "undefined") {
 const picker = document.createElement("details"), title = document.createElement("summary");
-title.textContent = "Escolher um assunto específico";
+title.textContent = "Ver mais assuntos";
 picker.append(title);
 for (const [label, word, topic] of themes) {
   const button = document.createElement("button");

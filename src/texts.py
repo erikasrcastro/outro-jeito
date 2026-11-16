@@ -1,22 +1,22 @@
-"""Todo fallback tem ação real e saída alternativa, sem LLM."""
+"""Mensagens curtas para erros e situações sem resposta."""
 MESSAGES = {
-    "clarify": ("Sua pergunta pode envolver mais de um assunto. Qual você quer explorar primeiro? Não precisa contar detalhes.", "choose_topic", "Escolher um dos nove temas"),
-    "urgent": ("Se existe perigo agora, sua segurança vem primeiro.", "show_help", "Ver opções de ajuda"),
-    "privacy": ("O texto pode identificar alguém. Podemos seguir sem esses dados.", "edit_text", "Revisar meu texto"),
-    "groq": ("A interpretação está indisponível. Nada foi confirmado.", "show_general", "Ver caminhos gerais"),
-    "json": ("Não consegui validar a resposta com segurança.", "choose_topic", "Escolher assunto"),
-    "senado": ("Não consegui confirmar a referência legal na fonte oficial.", "show_general", "Ver possibilidades gerais"),
-    "general": ("Não consegui identificar o foco sem usar seu relato pessoal. Escolha um dos nove assuntos para ver uma orientação específica.", "choose_topic", "Escolher um assunto"),
-    "preview": ("A triagem local funcionou. Groq e Senado ainda não foram conectados.", "show_general", "Ver possibilidades gerais"),
-    "invalid": ("Essa entrada não pôde ser utilizada.", "choose_topic", "Escolher assunto"),
-    "custody": ("Guarda de filhos exige análise própria; este MVP ainda não verifica essas normas. Consulte o diretório oficial de Defensorias por estado.", "open_official_source", "Encontrar Defensoria do meu estado"),
-    "work": ("Ainda não consultamos vagas ou benefícios de trabalho. O Sine informa caminhos oficiais de busca de emprego, sem garantia de vaga.", "open_official_source", "Conhecer o Sine oficial"),
+    "clarify": ("Você quer saber sobre casa, filhos, trabalho ou outro tema? Escolha um assunto. Não precisa contar sua história.", "choose_topic", "Escolher assunto"),
+    "urgent": ("Se há perigo agora, sua segurança vem primeiro. Veja onde pedir ajuda, se for seguro.", "show_help", "Ver ajuda agora"),
+    "privacy": ("Seu texto pode mostrar quem você é. Podemos continuar sem nomes ou endereços.", "edit_text", "Mudar meu texto"),
+    "groq": ("Não consegui buscar as informações agora. Você pode ver opções gerais.", "show_general", "Ver opções gerais"),
+    "json": ("Não consegui conferir a resposta. Vamos escolher um assunto de novo.", "choose_topic", "Escolher assunto"),
+    "senado": ("Não consegui conferir a lei no Senado agora. Não vou dizer que ela vale para você.", "show_general", "Ver opções gerais"),
+    "general": ("Ainda não sei qual assunto você quer. Por exemplo: casa, filhos, trabalho ou saúde. Escolha um tema.", "choose_topic", "Escolher um assunto"),
+    "preview": ("Esta é uma versão de teste. Ainda não foi possível usar as fontes externas.", "show_general", "Ver opções gerais"),
+    "invalid": ("Não consegui entender o pedido. Escolha um assunto para começar.", "choose_topic", "Escolher assunto"),
+    "custody": ("Sobre os filhos, cada família pode ter regras diferentes. A Defensoria Pública pode orientar, conforme as regras de atendimento.", "open_official_source", "Conhecer a Defensoria"),
+    "work": ("Ainda não buscamos vagas de emprego. O Sine mostra onde procurar, mas não garante uma vaga.", "open_official_source", "Conhecer o Sine"),
 }
 
 
 def fallback(code):
     message, action, label = MESSAGES[code]
-    other = {"privacy": ("use_guided_options", "Continuar sem contar detalhes"),
+    other = {"privacy": ("use_guided_options", "Continuar sem detalhes"),
              "urgent": ("switch_game", "Trocar de tela")}.get(code, ("return_home", "Voltar ao início"))
     return {"status": code, "message": message,
             "primary_action": {"id": action, "label": label},

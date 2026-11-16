@@ -11,11 +11,11 @@ function renderPaths(response) {
     const question = document.createElement("p");
     const possibility = document.createElement("p");
     button.type = "button";
-    button.textContent = `${index + 1}. ${path.title} — conhecer melhor`;
+    button.textContent = `${index + 1}. ${path.title} — entender melhor`;
     question.hidden = true;
-    possibility.textContent = `Possibilidade a explorar (não verificada para seu caso): ${path.possibility}`;
+    possibility.textContent = path.possibility;
     button.onclick = () => {
-      question.textContent = `Para refletir, se quiser: ${path.question} Não precisa responder aqui.`;
+      question.textContent = `Se quiser, pense nesta pergunta: ${path.question} Você não precisa responder aqui.`;
       question.hidden = false;
       question.setAttribute("tabindex", "-1");
       question.focus();
@@ -31,7 +31,7 @@ async function sendConfirmed() {
   $("context").value = "";
   const controller = new AbortController(), token = ++generation;
   pending?.abort(); pending = controller;
-  show({status:"loading", message:"Consultando os caminhos. Você pode cancelar.",
+  show({status:"loading", message:"Vou buscar informações. Você pode parar quando quiser.",
     primary_action:{id:"return_home",label:"Cancelar e voltar"},
     secondary_action:{id:"show_help",label:"Ajuda imediata"}});
   const timeout = setTimeout(() => controller.abort(), 25000);

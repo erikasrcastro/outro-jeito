@@ -1,30 +1,30 @@
-"""Catálogo local: instituições oficiais; não afirma atendimento disponível."""
+"""Catálogo oficial simplificado; sem prometer atendimento ou benefícios."""
 GUIDES = {
-    "protection": ("Ligue 180 oferece orientação sobre a rede de atendimento; não fazemos contato automático.",
-                   "https://www.gov.br/mulheres/pt-br/ligue180", "Conhecer o Ligue 180"),
-    "family": ("Dúvidas familiares exigem avaliar circunstâncias. O CNJ lista as Defensorias por estado, que podem orientar conforme critérios de atendimento.",
-               "https://www.cnj.jus.br/poder-judiciario/defensoria-publica/", "Encontrar Defensoria do meu estado"),
-    "work": ("O Sine informa formas de procurar emprego. Não verificamos vagas em tempo real.",
+    "protection": ("O Ligue 180 orienta mulheres e informa onde pedir ajuda. O aplicativo não liga para ninguém.",
+                   "https://www.gov.br/mulheres/pt-br/ligue180", "Entender o Ligue 180"),
+    "family": ("A Defensoria Pública pode explicar regras sobre filhos e casa, caso você possa ser atendida.",
+               "https://www.cnj.jus.br/poder-judiciario/defensoria-publica/", "Conhecer a Defensoria"),
+    "work": ("O Sine mostra como buscar emprego. Por exemplo: onde procurar vagas. Não sabemos se há vaga agora.",
              "https://www.gov.br/pt-br/servicos/buscar-emprego-no-sistema-nacional-de-emprego-sine", "Conhecer o Sine"),
-    "welfare": ("O Cadastro Único pode ser uma porta de entrada para programas sociais, mas cada programa tem regras próprias.",
-                "https://www.gov.br/pt-br/servicos/inscrever-se-no-cadastro-unico-para-programas-sociais-do-governo-federal/", "Conhecer Cadastro Único"),
-    "housing": ("Existem políticas habitacionais com requisitos específicos. Não verificamos elegibilidade ou vagas.",
-                "https://www.gov.br/cidades/pt-br/acesso-a-informacao/perguntas-frequentes/habitacao", "Conhecer política habitacional"),
-    "health": ("O SUS dispõe de informações sobre acesso à saúde; não consultamos disponibilidade de atendimento.",
-               "https://www.gov.br/saude/pt-br", "Conhecer canais do SUS"),
-    "accessibility": ("Há referências oficiais sobre acessibilidade; cada medida pode ter condições de acesso.",
-                      "https://www.gov.br/mdh/pt-br/navegue-por-temas/pessoa-com-deficiencia/publicacoes/guia-pratico-de-direitos-de-acessibilidade", "Conhecer guia de acessibilidade"),
-    "children": ("A rede socioassistencial pode orientar famílias em risco ou com direitos violados; não verificamos unidades abertas.",
-                 "https://www.gov.br/mds/pt-br/acoes-e-programas/SUAS/unidades-de-atendimento/centro-de-referencia-especializado-de-assistencia-social-creas", "Conhecer orientação do CREAS"),
-    "justice": ("Para orientação jurídica sobre família, moradia ou patrimônio, encontre o serviço da Defensoria do seu estado. O atendimento depende dos critérios locais.",
-                "https://www.cnj.jus.br/poder-judiciario/defensoria-publica/", "Encontrar Defensoria do meu estado"),
+    "welfare": ("O Cadastro Único pode ajudar a conhecer programas sociais. Cada programa tem regras.",
+                "https://www.gov.br/pt-br/servicos/inscrever-se-no-cadastro-unico-para-programas-sociais-do-governo-federal/", "Entender o Cadastro Único"),
+    "housing": ("Há programas de moradia, mas cada um tem regras. Não sabemos se há vagas nem quem pode participar.",
+                "https://www.gov.br/cidades/pt-br/acesso-a-informacao/perguntas-frequentes/habitacao", "Conhecer ajuda com moradia"),
+    "health": ("O SUS oferece atendimento público. Não sabemos se há vagas ou horários disponíveis agora.",
+               "https://www.gov.br/saude/pt-br", "Conhecer o SUS"),
+    "accessibility": ("Existem direitos para pessoas com deficiência. Cada pedido pode ter regras diferentes.",
+                      "https://www.gov.br/mdh/pt-br/navegue-por-temas/pessoa-com-deficiencia/publicacoes/guia-pratico-de-direitos-de-acessibilidade", "Conhecer direitos de acesso"),
+    "children": ("Há serviços que orientam famílias em risco. Não sabemos quais estão abertos agora.",
+                 "https://www.gov.br/mds/pt-br/acoes-e-programas/SUAS/unidades-de-atendimento/centro-de-referencia-especializado-de-assistencia-social-creas", "Conhecer ajuda à família"),
+    "justice": ("A Defensoria Pública pode orientar sobre filhos, casa ou dinheiro, conforme as regras de atendimento.",
+                "https://www.cnj.jus.br/poder-judiciario/defensoria-publica/", "Conhecer a Defensoria"),
 }
 
 def response(category, status="orientation"):
     message, url, label = GUIDES[category]
     if status == "senado":
-        message = "Não consegui confirmar a norma no Senado agora. " + message
+        message = "Não consegui conferir a lei no Senado agora. " + message
     return {"status": status, "evidence": "UNVERIFIED", "phase": "F4", "simulated": False,
             "message": message, "source": {"url": url, "source_kind": "official_guide"},
             "primary_action": {"id": "open_official_source", "label": label},
-            "secondary_action": {"id": "choose_topic", "label": "Conhecer outro tema"}}
+            "secondary_action": {"id": "choose_topic", "label": "Ver outro assunto"}}

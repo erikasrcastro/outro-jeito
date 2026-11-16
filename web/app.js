@@ -4,7 +4,7 @@ const actionNames = new Set(["show_general", "return_home", "choose_topic", "sho
 function show(response) {
   document.getElementById("oj-source-guide")?.remove();
   $("result").hidden = false;
-  $("chosen").textContent = response.status === "urgent" ? "Ajuda disponível" : "Seu próximo passo";
+  $("chosen").textContent = response.status === "urgent" ? "Ajuda disponível" : "O que você pode fazer";
   $("message").textContent = response.message;
   sourceLink = response.source?.url || "";
   renderPaths(response);
@@ -29,7 +29,7 @@ function switchGame() {
   $("game").hidden = false; $("game-title").focus();
 }
 function general() {
-  show({status:"general", message:"Estes são assuntos gerais para explorar, sem confirmação para seu caso. Escolha um tema ou consulte as opções de ajuda.", primary_action:{id:"choose_topic",label:"Escolher assunto"}, secondary_action:{id:"show_help",label:"Ver opções de ajuda"}});
+  show({status:"general", message:"Você pode começar por um tema. Por exemplo: casa, filhos ou trabalho. Nada foi confirmado para você.", primary_action:{id:"choose_topic",label:"Escolher assunto"}, secondary_action:{id:"show_help",label:"Ver opções de ajuda"}});
 }
 const actions = {
   return_home: home, choose_topic: () => { home(); document.querySelector(".choices details")?.setAttribute("open", ""); }, show_help: showHelp, switch_game: switchGame,

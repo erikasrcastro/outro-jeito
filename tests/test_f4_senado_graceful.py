@@ -31,7 +31,7 @@ class SenateFailure(unittest.IsolatedAsyncioTestCase):
         self.assertTrue(all(p["evidence"] == "HYPOTHESIS" for p in result["paths"]))
         self.assertFalse(result["source_verified"])
         self.assertNotIn("Fonte legislativa localizada", result["message"])
-        self.assertIn("Não foi possível verificar a referência legislativa", result["message"])
+        self.assertIn("Não consegui conferir a lei no Senado", result["message"])
         self.assertEqual(result["primary_action"]["id"], "open_official_source")
 
     async def test_503_keeps_validated_paths(self): await self.check_failure("http")
