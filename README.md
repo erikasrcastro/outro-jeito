@@ -10,11 +10,11 @@ O código completo do MVP está neste repositório. O Cloudflare Worker chama-se
 
 O portal está destinado a **testes acadêmicos públicos**, sem login, exclusivamente com situações fictícias. Ele não está homologado para acompanhamento de casos reais ou intervenções de emergência. Não envia ligações, denúncias ou mensagens automaticamente.
 
-A publicação real depende de uma implantação bem-sucedida na conta Cloudflare e de configurar o segredo `GROQ_API_KEY`; não atribuir URL sem confirmar no painel. O GitHub público por si só não significa que o portal esteja no ar.
+A implantação pública de testes está disponível em https://outro-jeito-staging.erika-srcastro.workers.dev/ e foi verificada em 16/11/2026. A chave `GROQ_API_KEY` é armazenada somente como segredo da Cloudflare.
 
 ## Identidade visual
 
-Identidade aprovada: roxo profundo `#2A0E3A`, violeta `#7B2FF7`, coral `#FF6B5F`, amarelo `#FFC240` e off-white `#F8F5EE`. Assinatura: *Existem outras formas de seguir.*
+Identidade aprovada: roxo profundo `#2A0E3A`, violeta `#7B2FF7`, coral `#FF6B5F`, amarelo `#FFC240` e off-white `#F8F5EE`. Assinatura: *Existem outras formas de seguir.* Arquivos ativos exclusivamente em `web/`; o kit histórico está arquivado no Drive.
 
 ## Arquitetura
 
