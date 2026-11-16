@@ -1,27 +1,19 @@
-/* Outro Jeito | Tokens v1.1: escopo visual restrito ao explorador. */
+/* Outro Jeito | v1.2 — tokens e escopo correto para o HTML atual. */
 :root {
-  --oj-deep: #2A0E3A;
-  --oj-deep-2: #3F1456;
-  --oj-purple: #7B2FF7;
-  --oj-coral: #FF6B5F;
-  --oj-yellow: #FFC240;
-  --oj-cream: #F8F5EE;
-  --oj-white: #FFFFFF;
-  --oj-ink: #2A0E3A;
-  --oj-line: #DCD3E1;
-  --oj-soft: #F0E8F6;
-  --oj-heading: "Sora", "Inter", system-ui, sans-serif;
-  --oj-body: "Inter", system-ui, sans-serif;
+  --oj-deep:#2A0E3A; --oj-deep-2:#3F1456; --oj-purple:#7B2FF7;
+  --oj-coral:#FF6B5F; --oj-yellow:#FFC240; --oj-cream:#F8F5EE;
+  --oj-white:#FFFFFF; --oj-ink:#2A0E3A; --oj-line:#DCD3E1; --oj-soft:#F0E8F6;
+  --oj-heading:"Sora","Inter",system-ui,sans-serif;
+  --oj-body:"Inter",system-ui,sans-serif;
 }
 html { color-scheme: light; }
-body { background-color: var(--oj-cream) !important; }
-.frame:has(.topics) { color: var(--oj-ink); font-family: var(--oj-body); }
-.frame:has(.topics) :is(h1,h2,h3,.oj-wordmark) {
-  font-family: var(--oj-heading); letter-spacing: -.035em;
+body { background-color:var(--oj-cream) !important; }
+body:has(> main.shell) { font-family:var(--oj-body); color:var(--oj-ink); }
+body:has(> main.shell) :is(h1,h2,h3,.oj-wordmark) {
+  font-family:var(--oj-heading); letter-spacing:-.035em;
 }
-.frame:has(.topics) :is(button,input,textarea,select) { font-family: var(--oj-body); }
-.frame:has(.topics) ::selection { background:var(--oj-yellow); color:var(--oj-deep); }
-.frame:has(.topics) :focus-visible {
-  outline: 3px solid var(--oj-purple) !important; outline-offset: 3px;
+body:has(> main.shell) :is(button,input,textarea,select) { font-family:var(--oj-body); }
+body:has(> main.shell) :focus-visible {
+  outline:3px solid var(--oj-purple) !important; outline-offset:3px;
 }
-[hidden] { display: none !important; }
+[hidden] { display:none !important; }
