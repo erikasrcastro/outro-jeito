@@ -17,3 +17,7 @@ O kit completo de identidade visual e a referência aprovada estão arquivados s
 ## Validação acadêmica (ambiente local)
 
 O MVP foi testado com Groq + Python + API de legislação do Senado no mesmo fluxo; T1 real, T2 de entrada insuficiente e T3 de indisponibilidade simulada. A integração não está publicada neste repositório nesta etapa.
+
+## Preparação para publicar MVP e staging
+
+O repositório inclui [ferramentas de importação segura e roteiro de deploy Cloudflare](docs/PUBLICACAO_STAGING.md). **Importação do código local e deploy real ainda precisam ser executados no Ubuntu**, com testes, revisão de segredos e ativação de Cloudflare Access antes de compartilhar o endereço. Os scripts de preparação já estão versionados e testados isoladamente.
