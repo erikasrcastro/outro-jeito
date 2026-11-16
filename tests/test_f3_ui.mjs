@@ -9,7 +9,7 @@ let guide=null;
 const calls=[],listeners={};
 for(const [id,node] of Object.entries(nodes))node.addEventListener=(ev,fn)=>listeners[id+ev]=fn;
 const dom={getElementById:id=>id==="oj-source-guide"?guide:nodes[id],
-  createElement:tag=>({tag,children:[],append(...items){this.children.push(...items);},
+  createElement:tag=>({tag,children:[],setAttribute(){},append(...items){this.children.push(...items);},
     focus(){this.focused=true},remove(){if(this===guide)guide=null}}),
   querySelector:sel=>sel==="#result .actions"?{before(box){guide=box}}:{focus(){}},
   querySelectorAll:()=>[]};
