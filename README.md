@@ -2,22 +2,48 @@
 
 **Existem outras formas de seguir.**
 
-Web app acadêmico em desenvolvimento para a Global Solution (CitizenTech), FIAP — Agentes Inteligentes.
+Protótipo acadêmico do Grupo 24 da Global Solution (CitizenTech), FIAP — Agentes Inteligentes. A proposta é ajudar pessoas a explorar possibilidades de orientação, proteção e autonomia, sem impor decisões.
+
+## Demonstração pública
+
+O código completo do MVP está neste repositório. O Cloudflare Worker chama-se `outro-jeito-staging`, com interface HTML/CSS/JS estática e backend Python sob a mesma origem, usando a rota `/api/v1/explore`.
+
+O portal está destinado a **testes acadêmicos públicos**, sem login, exclusivamente com situações fictícias. Ele não está homologado para acompanhamento de casos reais ou intervenções de emergência. Não envia ligações, denúncias ou mensagens automaticamente.
+
+A publicação real depende de uma implantação bem-sucedida na conta Cloudflare e de configurar o segredo `GROQ_API_KEY`; não atribuir URL sem confirmar no painel. O GitHub público por si só não significa que o portal esteja no ar.
 
 ## Identidade visual
 
-Direção aprovada em 15/11/2026: roxo profundo `#2A0E3A`, violeta `#7B2FF7`, coral `#FF6B5F`, amarelo `#FFC240` e off-white `#F8F5EE`. Símbolo de caminhos e possibilidades. Tipografia de referência: Sora + Inter.
+Identidade aprovada: roxo profundo `#2A0E3A`, violeta `#7B2FF7`, coral `#FF6B5F`, amarelo `#FFC240` e off-white `#F8F5EE`. Assinatura: *Existem outras formas de seguir.*
 
-O kit completo de identidade visual e a referência aprovada estão arquivados separadamente. A publicação do código funcional será feita a partir da versão final validada no Ubuntu, após conferência de credenciais.
+## Arquitetura
 
-## Segurança e privacidade
+- **Frontend:** `web/` servido como Workers Static Assets.
+- **Backend:** `src/main.py` e módulos Python sob a rota `/api/v1/explore`.
+- **Groq:** interpretação estruturada do contexto minimizado.
+- **Senado Federal:** fonte oficial para referências legislativas.
+- **Segurança de interface:** ajuda imediata 180, 100, 190 e troca rápida para jogo da velha. A troca de tela não apaga histórico nem impede monitoramento.
 
-**Repositório público.** Nunca publicar `.dev.vars`, `.env`, tokens, chaves, dados pessoais, históricos de conversas, arquivos temporários ou artefatos locais. O código da interface e do agente só deve ser enviado após revisão.
+## Cloudflare — conexão com GitHub
 
-## Validação acadêmica (ambiente local)
+Ao criar o aplicativo a partir deste repositório na Cloudflare Workers & Pages:
 
-O MVP foi testado com Groq + Python + API de legislação do Senado no mesmo fluxo; T1 real, T2 de entrada insuficiente e T3 de indisponibilidade simulada. A integração não está publicada neste repositório nesta etapa.
+- Project name: `outro-jeito-staging` (mesmo nome que em `wrangler.jsonc`).
+- Build command: **vazio**.
+- Deploy command: `uv run pywrangler deploy`.
+- Preview builds: opcionais; podem ficar desligadas.
+- Cloudflare Access: **desligado para permitir testes públicos**.
+- Depois do primeiro deploy, configure o segredo `GROQ_API_KEY` no Worker, em **Settings → Variables and Secrets**.
 
-## Preparação para publicar MVP e staging
+A Cloudflare cria a URL real `*.workers.dev` após a implantação. Veja também `docs/PUBLICACAO_STAGING.md`.
 
-O repositório inclui [ferramentas de importação segura e roteiro de deploy Cloudflare](docs/PUBLICACAO_STAGING.md). **Importação do código local e deploy real ainda precisam ser executados no Ubuntu**, com testes, revisão de segredos e ativação de Cloudflare Access antes de compartilhar o endereço. Os scripts de preparação já estão versionados e testados isoladamente.
+## Segurança e avaliação
+
+Nunca publicar `.dev.vars`, `.env`, tokens, dados pessoais ou históricos de conversa. Somente testar com cenários fictícios. A aplicação é um MVP e não presta aconselhamento jurídico individual nem substitui profissionais ou serviços de emergência.
+
+Executar regressão local antes de mudanças funcionais:
+
+```bash
+python3 -m unittest discover -s tests -q
+node --test tests/*.mjs
+```
