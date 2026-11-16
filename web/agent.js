@@ -36,7 +36,7 @@ async function sendConfirmed() {
     secondary_action:{id:"show_help",label:"Ajuda imediata"}});
   const timeout = setTimeout(() => controller.abort(), 25000);
   try {
-    const response = await fetch("http://127.0.0.1:8787/api/v1/explore", {
+    const response = await fetch("/api/v1/explore", {
       method:"POST", headers:{"Content-Type":"application/json"}, signal:controller.signal,
       body:JSON.stringify({topic:activeTopic,context:previewSafe})});
     if (!response.ok) throw Error("Serviço indisponível");
