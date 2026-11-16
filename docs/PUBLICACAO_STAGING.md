@@ -1,61 +1,56 @@
-# Publicação do MVP — Grupo 24 (staging)
+# Outro Jeito — homologação pública pela Cloudflare
 
-Este repositório é **público**. O clone no Ubuntu receberá todos os **arquivos-fonte do aplicativo** (src/, web/, tests/, scripts/, docs/ e dependências declaradas), excluindo chaves, caches, arquivos temporários e runtimes vendorizados. Nunca versionar `.dev.vars`.
+**Decisão da responsável em 16/11/2026:** disponibilizar o portal para professores e avaliadores sem login ou Cloudflare Access. Usar somente cenários fictícios. Acesso público não significa que o MVP esteja aprovado para histórias reais.
 
-## 1. Importar do Ubuntu sem sobrescrever o branding
+## Configuração publicada no GitHub
 
-```bash
-cd ~/projetos
-git -C outro-jeito-brand pull --ff-only
-python3 outro-jeito-brand/scripts/importar_codigo_seguro.py \
-  ~/projetos/citizentech-fase0 ~/projetos/outro-jeito-brand
+O arquivo `wrangler.jsonc` da branch `main` contém:
 
-cd ~/projetos/citizentech-fase0
-python3 -m unittest discover -s tests -q
-node --test tests/*.mjs
+- `name: outro-jeito-staging`;
+- `main: src/main.py`;
+- `compatibility_flags: python_workers`;
+- `assets.directory: ./web`;
+- `assets.run_worker_first: ["/api/*"]`.
 
-cd ~/projetos/outro-jeito-brand
-git add -A -- src web tests scripts docs
-git add -- wrangler.jsonc pyproject.toml uv.lock
-git diff --cached --check
-git diff --cached --stat
-git diff --cached --name-only
-```
+O frontend `web/agent.js` consulta `/api/v1/explore` na mesma origem.
 
-Se os testes e a revisão de arquivos estiverem corretos, publicar:
+## Deploy conectado ao GitHub
 
-```bash
-git commit -m "feat(mvp): importa codigo funcional validado do Outro Jeito"
-git push origin main
-```
+No Cloudflare Dashboard → Workers & Pages → Create application → GitHub → `erikasrcastro/outro-jeito` → Create and deploy:
 
-**Não** executar push se a auditoria revelar chaves, nomes reais, dados de usuários ou `*.har`. O detector automático impede alguns padrões conhecidos de chaves, **mas não é garantia de ausência de segredos**.
+1. Project name: `outro-jeito-staging`.
+2. Build command: vazio.
+3. Deploy command: `uv run pywrangler deploy`.
+4. Preview builds: opcional; desligar para simplificar.
+5. Protect with Cloudflare Access: **OFF** para acesso público.
+6. Clique **Deploy** e confira o status e URL real do Worker.
 
-## 2. Preparar uma única URL Cloudflare (Worker Python + HTML/CSS/JS)
+O comando Python é o recomendado na documentação oficial: https://developers.cloudflare.com/workers/languages/python/
+Workers Builds inclui `uv`: https://developers.cloudflare.com/workers/ci-cd/builds/build-image/
 
-```bash
-cd ~/projetos/citizentech-fase0
-python3 ~/projetos/outro-jeito-brand/scripts/preparar_staging_worker.py .
-```
+## Configuração da API Groq
 
-Esse script cria `wrangler.staging.jsonc` e `.deploy/outro-jeito/web` (ignorados pelo Git). Na cópia da interface, a URL de API passa de localhost a `/api/v1/explore`. O frontend e o backend são servidos na **mesma origem**, sem Cloudflare Pages separado; a instalação local não é alterada.
+Após o primeiro deploy, abra o Worker → Settings → Variables and Secrets → Add secret:
 
-Para publicar o Worker com o nome **outro-jeito-staging**:
+- Nome `GROQ_API_KEY`.
+- Valor: chave Groq existente na máquina local; nunca colar no GitHub nem no chat.
+- Tipo **Secret**, não variável pública.
 
-```bash
-uv run pywrangler login
-uv run pywrangler deploy --config wrangler.staging.jsonc
-uv run pywrangler secret put GROQ_API_KEY --config wrangler.staging.jsonc
-```
+Salve e conclua a aplicação da configuração no Worker. Confira `/api/v1/health`; `groq_configured: true` confirma presença da chave. O campo `apis_connected: false` é informativo fixo nesta versão, e NÃO comprova que as APIs estejam desconectadas.
 
-A Cloudflare solicitará a chave em ambiente local. **Nunca colar a chave no chat nem no repositório**. O deploy deverá mostrar uma URL real `workers.dev`, que deverá ser conferida antes de compartilhar; nenhum endereço de staging é assumido neste documento. Verificar se o segredo foi aplicado e repetir o deploy se necessário.
+## Testes de aceite público (somente fatos fictícios)
 
-**Proteção obrigatória de homologação:** no dashboard Cloudflare, **Workers & Pages → outro-jeito-staging → Access → Protect this Worker behind Access → All traffic**; permitir somente contas autorizadas para testes. Sem essa etapa, uma URL `workers.dev` pode ficar pública. Orientação oficial: https://developers.cloudflare.com/workers/configuration/cloudflare-access/
+1. Abrir URL pública em janela anônima: não deve exigir login.
+2. Testar Trocar de tela → jogo da velha; abrir página novamente.
+3. Verificar Ajuda imediata com 180, 100, 190 e 192.
+4. T2: escolher assunto e deixar contexto vazio; deve pedir complemento sem consulta externa.
+5. T1: perguntar ficticiamente sobre moradia, confirmar o resumo minimizado e observar fonte legislativa e caminhos condicionais.
+6. Se a API ficar indisponível, o fallback não deve inventar leis nem prometer benefícios.
 
-## 3. Smoke test
+Não confundir T3 do relatório, que foi uma **falha simulada do Senado**, com uma indisponibilidade real observada no Worker público.
 
-Em uma sessão autorizada, conferir primeiro a tela inicial, o botão Trocar de tela, o jogo da velha e os telefones 180/100/190. Testar entrada fictícia completa, entrada insuficiente, fallback sem resposta e confirmação do envio de categorias. Conferir no DevTools que a requisição aponta para **`/api/v1/explore`** no domínio Cloudflare e **nunca para `127.0.0.1`**.
+## Cautelas antes de uso não acadêmico
 
-Não usar histórias pessoais reais: gates de auditoria de privacidade, retenção Groq, acesso por menores e avaliação especializada continuam pendentes. Proteção visual não apaga histórico nem impede spyware.
+Ainda pendentes: revisão do tratamento de dados e ZDR da Groq, teste de retenção real, avaliação de falsas interpretações de urgência, acessibilidade e revisão por profissionais da rede de atendimento. O site orienta o uso de contextos fictícios e não faz chamadas automáticas a serviços públicos.
 
-Fontes técnicas oficiais: https://developers.cloudflare.com/workers/static-assets/ ; https://developers.cloudflare.com/workers/languages/python/ ; https://developers.cloudflare.com/workers/configuration/secrets/
+Não ativar cobrança paga apenas para testar.
