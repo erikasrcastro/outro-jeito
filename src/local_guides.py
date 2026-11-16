@@ -3,7 +3,7 @@ GUIDES = {
     "protection": ("O Ligue 180 orienta mulheres e informa onde pedir ajuda. O aplicativo não liga para ninguém.",
                    "https://www.gov.br/mulheres/pt-br/ligue180", "Entender o Ligue 180"),
     "family": ("A Defensoria Pública pode explicar regras sobre filhos e casa, caso você possa ser atendida.",
-               "https://www.cnj.jus.br/poder-judiciario/defensoria-publica/", "Conhecer a Defensoria"),
+               "https://www.cnj.jus.br/poder-judiciario/defensoria-publica/", "Conhecer a Defensoria do meu estado"),
     "work": ("O Sine mostra como buscar emprego. Por exemplo: onde procurar vagas. Não sabemos se há vaga agora.",
              "https://www.gov.br/pt-br/servicos/buscar-emprego-no-sistema-nacional-de-emprego-sine", "Conhecer o Sine"),
     "welfare": ("O Cadastro Único pode ajudar a conhecer programas sociais. Cada programa tem regras.",

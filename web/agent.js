@@ -8,19 +8,22 @@ function renderPaths(response) {
   for (const [index, path] of response.paths.entries()) {
     const item = document.createElement("section");
     const button = document.createElement("button");
-    const question = document.createElement("p");
     const possibility = document.createElement("p");
+    const title = `${index + 1}. ${path.title}`;
     button.type = "button";
-    button.textContent = `${index + 1}. ${path.title} — entender melhor`;
-    question.hidden = true;
+    button.textContent = title + " — ver exemplo";
     possibility.textContent = path.possibility;
+    possibility.hidden = true;
+    possibility.id = "oj-path-" + index;
+    button.setAttribute("aria-expanded", "false");
+    button.setAttribute("aria-controls", possibility.id);
     button.onclick = () => {
-      question.textContent = `Se quiser, pense nesta pergunta: ${path.question} Você não precisa responder aqui.`;
-      question.hidden = false;
-      question.setAttribute("tabindex", "-1");
-      question.focus();
+      const opening = possibility.hidden;
+      possibility.hidden = !opening;
+      button.textContent = title + (opening ? " — fechar" : " — ver exemplo");
+      button.setAttribute("aria-expanded", String(opening));
     };
-    item.append(button, possibility, question);
+    item.append(button, possibility);
     panel.append(item);
   }
 }

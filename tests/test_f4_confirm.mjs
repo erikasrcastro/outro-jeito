@@ -8,7 +8,7 @@ const whitelist = app.match(/const actionNames = new Set\((\[[^\]]+\])\)/);
 assert.ok(whitelist, 'lista de ações presente');
 assert.ok(JSON.parse(whitelist[1]).includes('confirm_preview'), 'confirmação permitida');
 assert.match(app, /confirm_preview:\s*\(\)\s*=>\s*sendConfirmed\(\)/);
-assert.match(html, /agent\.js\?v=simples-v1/);
+assert.match(html, /agent\.js\?v=simples-v2/);
 assert.match(html, /app\.js\?v=simples-v1/);
 assert.match(html, /flow\.js\?v=simples-v1/);
 assert.match(server, /Response\(None, status=204, headers=headers\)/);
