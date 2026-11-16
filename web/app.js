@@ -2,6 +2,7 @@ const $ = id => document.getElementById(id);
 let activeTopic = "direitos", pending = null, generation = 0, sourceLink = "";
 const actionNames = new Set(["show_general", "return_home", "choose_topic", "show_help", "switch_game", "edit_text", "use_guided_options", "retry_on_click", "open_official_source", "confirm_preview", "find_defensoria"]);
 function show(response) {
+  document.getElementById("oj-source-guide")?.remove();
   $("result").hidden = false;
   $("chosen").textContent = response.status === "urgent" ? "Ajuda disponível" : "Seu próximo passo";
   $("message").textContent = response.message;
