@@ -16,6 +16,7 @@ console.log("T04 PASS — urgência reconhecida; zero envio externo na triagem l
 runInNewContext('submit("direitos","Meu nome é Ana e moro na Rua Exemplo")',env);
 assert.equal(shown.at(-1).status,"privacy");
 assert.equal(sent.length,0);
+field.value="como fica minha casa na separação?";
 runInNewContext('submit("direitos","como fica minha casa na separação?")',env);
 assert.equal(shown.at(-1).status,"confirm");
 assert.equal(sent.length,0);
